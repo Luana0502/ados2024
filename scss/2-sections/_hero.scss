@@ -1,0 +1,154 @@
+@use '../1-base/variables';
+@use '../1-base/styles';
+@use '../3-components/components.scss';
+@use '../0-utils/mixins';
+
+.hero {
+    display: flex;
+    align-items: center;
+
+    &__content {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        align-items: center
+    }
+
+    &__text {
+        max-width: 50%;
+        text-align: left;
+
+        a {
+            font-size: 1.4rem;
+            line-height: 0;
+        }
+
+        &-subtitle {
+            color: variables.$text-off-white45-color;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        &-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        // botão cta
+        &-cta {
+         @extend %cta-btn;
+
+            img {
+                margin-left: .6rem;
+                height: 1rem; 
+            }
+        }
+    }
+
+    &__video {
+        width: 46%;
+        text-align: end;
+        video {
+            cursor: pointer;
+        }
+
+        &-frame {
+            max-width: 100%;
+            border-radius: 1rem;
+        }
+    }
+
+    // Mixins => small, medium screens
+    @include mixins.respond-to-range(340px, 799px) {
+        margin: 0;
+        flex-direction: column-reverse;
+        align-items: stretch; 
+
+        &__content {
+            flex-wrap: wrap; 
+            margin-bottom: 2rem;
+        }
+
+        &__text,
+        &__video {
+            width: 100%; 
+            max-width: none; 
+            margin-bottom: 1rem;
+            order: unset; 
+        }
+
+        &__text {
+            
+            order: 2;
+            &-cta {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+               
+            }
+            &-title {
+                font-size: 2.1rem;
+                margin-bottom: 1.6rem;
+            }
+            &-subtitle {
+                font-size: 1.2rem;
+            }    
+        }
+
+        &__video {
+            order: 1;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+// Regras específicas para o botão a partir de 677px
+@include mixins.respond-to-range(677px, 799px) {
+    .hero  {
+        // Sobrescreve o tamanho do botão a partir de 677px
+       &__text {
+        &-cta {
+            width: fit-content;
+        }
+       }
+    }
+}
+
+@include mixins.respond-to-range(800px, 923px) {
+    .hero {
+        &__text {
+            &-title {
+                font-size: 2.2rem;
+            }
+        }
+    }
+}
+
+@include mixins.respond-to-range(924px, 1138px) {
+    .hero {
+        &__text {
+            &-title {
+                font-size: 3.2rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 340px) and (max-width: 799px) {
+    .hero__content {
+         margin-bottom: 1rem;
+    }
+    .hero__text, .hero__video {
+      margin-bottom: 1;
+    }
+  }
+  

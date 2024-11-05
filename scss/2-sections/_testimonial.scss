@@ -1,0 +1,90 @@
+@use '../1-base/styles';
+@use '../1-base/variables';
+@use '../0-utils/mixins';
+
+.testimonials {
+
+  max-width: 1250px;
+  margin: 0 auto;
+
+  &__container {
+    @extend %section-spacer;
+  }
+
+  &__header {
+    margin-bottom: 2rem;
+    text-align: center;
+
+    h2 {
+      @extend %title-text;
+      @extend %text-gradient;
+    }
+
+    h3 {
+      @extend %subtitle-text;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    // x-small
+    @include mixins.respond-to('x-small') {
+      width: 100%;
+      display: block;
+  }
+    
+    .testimonial-card {
+      width: 49%;
+      background-color: variables.$card-bg-color;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+
+    // x-small
+    @include mixins.respond-to('x-small') {
+      width: 100%;
+    }
+
+    @include mixins.respond-to-range(580px, 796px) {
+      width: 100%;
+    }
+      
+
+      p {
+        @extend %p-text;
+      }
+
+      .testimonial-card__name {
+        p {
+          font-size: 0.8rem;
+          line-height: 0.8;
+          font-weight: 500;
+          color: variables.$text-special-color;
+        }
+      
+        span {
+          font-size: 0.8rem;
+          font-weight: 300;
+          color: variables.$text-off-white45-color;
+        }
+      }
+
+      &__info {
+        margin-top: 1.5rem;
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 54px;
+          margin-right: 1.2rem;
+          border-radius: 50%; /* Torna a imagem circular */
+        }
+      }
+    }
+  }
+}
+
+

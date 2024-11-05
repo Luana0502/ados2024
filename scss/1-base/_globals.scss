@@ -1,0 +1,26 @@
+// estilos globais para tags sem classes ou atributos
+@use 'reset';
+@use '_variables';
+@use '../0-utils/mixins';
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 180px;
+}
+
+body {
+    font-family: variables.$primary-font;
+    background-color: variables.$bg-color;
+    color: variables.$text-white-color;
+    font-size: 1rem;
+}
+
+.container {
+    margin: 0 2rem;
+}
+
+@include mixins.respond-to('x-small') {
+    .container {
+        margin: 0 1rem;
+    }
+ }
